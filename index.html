@@ -3,119 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Countdown</title>
+    <title>Jeethu's 25th Birthday</title>
     <style>
-        /* Basic styles */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f8f9fa;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
-        .container {
-            position: relative;
-            padding: 20px;
+        .navbar {
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
         }
 
-        /* Countdown styles */
-        #countdown {
-            margin-top: 100px;
-        }
-
-        #timer p {
-            font-size: 2rem;
-            margin: 10px;
+        .logo {
+            color: #1a237e;
+            font-size: 1.5rem;
             font-weight: bold;
         }
 
-        /* Party popper animation styles */
-        #partyPopup {
-            display: none;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
         }
 
-        .popper {
-            font-size: 50px;
-            animation: popper 1s ease-out;
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
         }
 
-        .hidden {
-            display: none;
-        }
-
-        h2 {
-            font-size: 3rem;
+        .nav-links a:hover {
             color: #ff69b4;
-            font-weight: bold;
-            margin-top: 20px;
         }
 
-        /* Party popper animation */
-        @keyframes popper {
-            0% {
-                transform: scale(0);
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 2rem;
+            min-height: 70vh;
+            background-color: #fff;
+        }
+
+        .hero-content {
+            max-width: 45%;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            color: #1a237e;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            color: #ff69b4;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .date-badge {
+            background-color: #87CEEB;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .circular-image {
+            width: 400px;
+            height: 500px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .circular-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .countdown-item {
+            background-color: #ff5722;
+            color: white;
+            padding: 0.8rem;
+            border-radius: 8px;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .countdown-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+        }
+
+        .balloon {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
             }
-            100% {
-                transform: scale(1.5);
+
+            .hero-content {
+                max-width: 100%;
+                order: 2;
+            }
+
+            .circular-image {
+                width: 300px;
+                height: 375px;
+                order: 1;
+            }
+
+            .countdown {
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div id="countdown">
-            <h1>Countdown to 17th July 2025</h1>
-            <div id="timer">
-                <p id="days"></p>
-                <p id="hours"></p>
-                <p id="minutes"></p>
-                <p id="seconds"></p>
+    <nav class="navbar">
+        <div class="logo">Jeethu</div>
+        <div class="nav-links">
+            <a href="#" style="color: #ff69b4">Home</a>
+            <a href="#">Biography</a>
+            <a href="#">Pages</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact Us</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">You are invited to</h1>
+            <h2 class="hero-subtitle">Jeethu's 25th Birthday</h2>
+            <div class="date-badge">17th July 2025</div>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
             </div>
         </div>
 
-        <div id="partyPopup" class="hidden">
-            <div class="popper">
-                🎉🎉🎉
-            </div>
-            <h2>Happy Birthday Jeethu!</h2>
+        <div class="circular-image">
+            <img src="IMG_0790.jpeg" alt="Birthday Celebration">
         </div>
-    </div>
+    </section>
 
     <script>
-        // Set the target date for the countdown (17th July 2025)
-        const targetDate = new Date("July 17, 2025 00:00:00").getTime();
-
-        // Function to update the countdown every second
         function updateCountdown() {
+            const targetDate = new Date('July 17, 2025 00:00:00').getTime();
             const now = new Date().getTime();
-            const distance = targetDate - now;
+            const difference = targetDate - now;
 
-            if (distance <= 0) {
-                // If the countdown is finished, show the party popper and message
-                document.getElementById("partyPopup").style.display = "block";
-                document.getElementById("countdown").style.display = "none";
-            } else {
-                // Calculate the days, hours, minutes, and seconds left
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-                // Display the results
-                document.getElementById("days").innerHTML = `Days: ${days}`;
-                document.getElementById("hours").innerHTML = `Hours: ${hours}`;
-                document.getElementById("minutes").innerHTML = `Minutes: ${minutes}`;
-                document.getElementById("seconds").innerHTML = `Seconds: ${seconds}`;
-            }
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
         }
 
-        // Update the countdown every second
         setInterval(updateCountdown, 1000);
+        updateCountdown();
     </script>
 </body>
 </html>
