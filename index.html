@@ -1,33 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Tree Example</title>
-  </head>
-  <body>
-    <header>
-      <h1>Welcome to My Website</h1>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section>
-        <h2>About Us</h2>
-        <p>Here is some information about us.</p>
-      </section>
-      <section>
-        <h2>Contact</h2>
-        <p>Contact us at email@example.com</p>
-      </section>
-    </main>
-    <footer>
-      <p>© 2025 My Website</p>
-    </footer>
-  </body>
+    <title>Birthday Countdown</title>
+    <style>
+        /* Basic styles */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Countdown styles */
+        #countdown {
+            margin-top: 100px;
+        }
+
+        #timer p {
+            font-size: 2rem;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        /* Party popper animation styles */
+        #partyPopup {
+            display: none;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .popper {
+            font-size: 50px;
+            animation: popper 1s ease-out;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        h2 {
+            font-size: 3rem;
+            color: #ff69b4;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Party popper animation */
+        @keyframes popper {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="countdown">
+            <h1>Countdown to 17th July 2025</h1>
+            <div id="timer">
+                <p id="days"></p>
+                <p id="hours"></p>
+                <p id="minutes"></p>
+                <p id="seconds"></p>
+            </div>
+        </div>
+
+        <div id="partyPopup" class="hidden">
+            <div class="popper">
+                🎉🎉🎉
+            </div>
+            <h2>Happy Birthday Jeethu!</h2>
+        </div>
+    </div>
+
+    <script>
+        // Set the target date for the countdown (17th July 2025)
+        const targetDate = new Date("July 17, 2025 00:00:00").getTime();
+
+        // Function to update the countdown every second
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance <= 0) {
+                // If the countdown is finished, show the party popper and message
+                document.getElementById("partyPopup").style.display = "block";
+                document.getElementById("countdown").style.display = "none";
+            } else {
+                // Calculate the days, hours, minutes, and seconds left
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the results
+                document.getElementById("days").innerHTML = `Days: ${days}`;
+                document.getElementById("hours").innerHTML = `Hours: ${hours}`;
+                document.getElementById("minutes").innerHTML = `Minutes: ${minutes}`;
+                document.getElementById("seconds").innerHTML = `Seconds: ${seconds}`;
+            }
+        }
+
+        // Update the countdown every second
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
 </html>
